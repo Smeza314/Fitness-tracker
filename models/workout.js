@@ -1,8 +1,8 @@
 const { model, Schema } = require('mongoose')
 
-const workoutSchema = new Schema({
+const WorkoutSchema = new Schema({
   day: Date,
-  excercises: [{
+  exercises: [{
     type: String,
     name: String,
     duration: Number,
@@ -15,31 +15,31 @@ const workoutSchema = new Schema({
   {typeKey: '$type', toJSON: {virtuals: true}, toObject: {virtuals: true} }
 )
 
-workoutSchema.virtual('totalWeight').get(function () {
+WorkoutSchema.virtual('totalWeight').get(function () {
   let total = 0
 
-  this.excercises.forEach(exercise => {
+  this.exercises.forEach(exercise => {
     total += exercise.weight
   })
   return total
 })
 
-workoutSchema.virtual('totalDuration').get(function () {
+WorkoutSchema.virtual('totalDuration').get(function () {
   let total = 0
 
-  this.excercises.forEach(exercise => {
+  this.exercises.forEach(exercise => {
     total += exercise.duration
   })
   return total
 })
 
-workoutSchema.virtual('totalWorkouts').get(function () {
+WorkoutSchema.virtual('totalWorkouts').get(function () {
   let total = 0
 
-  this.excercises.forEach(exercise => {
+  this.exercises.forEach(exercise => {
     total += exercise.name
   })
   return total
 })
 
-module.exports = model('workout', workoutSchema)
+module.exports = model('Workout', WorkoutSchema)
