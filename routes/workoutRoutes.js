@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { workout } = require('../models')
+const { Workout } = require('../models')
 
 router.get('/workouts', (req, res) => Workout.find()
   .then(workouts => res.json(workouts))
